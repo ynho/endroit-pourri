@@ -198,7 +198,7 @@ int main (void)
     SCE_SceneEntity_SetMaterial (entity, material);
     SCE_SceneEntity_AddTexture (entity, tex);
 #endif
-    SCE_SceneEntity_AddEntity (egroup, entity);
+    SCE_SceneEntity_AddEntity (egroup, 0, entity);
 
     verif (SCEE_HaveError ())
 
