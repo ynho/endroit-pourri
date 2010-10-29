@@ -34,14 +34,15 @@ int main(void)
   l = SCE_Light_Create();
   SCE_Light_SetColor(l, 1., 1., 1.);
   SCE_Light_Infinite(l, SCE_TRUE);
-  SCE_Matrix4_Translate(SCE_Node_GetMatrix(SCE_Light_GetNode(l), SCE_NODE_READ_MATRIX),
+  SCE_Matrix4_Translate(SCE_Node_GetMatrix(SCE_Light_GetNode(l),
+                                           SCE_NODE_READ_MATRIX),
                         1., 2.4, 1.);
   SCE_Scene_AddLight(scene, l);
 
   mesh = SCE_Mesh_Load("spaceship.obj", 2);
   SCE_Mesh_AutoBuild(mesh);
   model = SCE_Model_Create();
-  SCE_Model_AddEntity(model, 0, mesh, NULL, NULL);
+  SCE_Model_AddNewEntity(model, 0, 0, mesh, NULL, NULL);
   SCE_Model_AddNewInstance(model, 0, 1, NULL);
   SCE_Model_MergeInstances(model);
   
