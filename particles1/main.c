@@ -193,7 +193,7 @@ int main (void)
     SCE_Material_EnablePointSprite (material);
     SCE_Material_SetBlending (material, GL_ONE, GL_ONE);
     SCE_Material_EnableBlending (material);
-    tex = SCE_Texture_Load (0, 0, 0, 0, 0, "sprite.png", NULL);
+    tex = SCE_Texture_Load (0, 0, 0, 0, 0, "../data/sprite.png", NULL);
     SCE_Texture_Build (tex, 1);
     SCE_SceneEntity_SetMaterial (entity, material);
     SCE_SceneEntity_AddTexture (entity, tex);

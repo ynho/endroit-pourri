@@ -39,7 +39,7 @@ int main(void)
                         1., 2.4, 1.);
   SCE_Scene_AddLight(scene, l);
 
-  mesh = SCE_Mesh_Load("spaceship.obj", 2);
+  mesh = SCE_Mesh_Load("../data/spaceship.obj", 2);
   SCE_Mesh_AutoBuild(mesh);
   model = SCE_Model_Create();
   SCE_Model_AddNewEntity(model, 0, 0, mesh, NULL, NULL);
