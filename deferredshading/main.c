@@ -102,9 +102,9 @@ int main (void)
     verif (SCEE_HaveError ())
     /* set shader's parameter according to texture's unit */
     SCE_Shader_Use (finalrender);
-    SCE_Shader_Param (SCE_PIXEL_SHADER, "colormap", 0);
-    SCE_Shader_Param (SCE_PIXEL_SHADER, "depthmap", 1);
-    SCE_Shader_Param (SCE_PIXEL_SHADER, "normalmap", 2);
+    SCE_Shader_Param ("colormap", 0);
+    SCE_Shader_Param ("depthmap", 1);
+    SCE_Shader_Param ("normalmap", 2);
     SCE_Shader_Use (NULL);
     /* load mesh */
     mesh = SCE_Mesh_Load ("../data/dofscene4.obj", SCE_FALSE);

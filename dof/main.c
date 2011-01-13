@@ -83,8 +83,8 @@ int main (void)
     verif (SCEE_HaveError ())
 
     SCE_Shader_Use (shd1);
-    SCE_Shader_Param (SCE_PIXEL_SHADER, "colormap", 0);
-    SCE_Shader_Param (SCE_PIXEL_SHADER, "depthmap", 1);
+    SCE_Shader_Param ("colormap", 0);
+    SCE_Shader_Param ("depthmap", 1);
     SCE_Shader_Use (NULL);
 
     mesh = SCE_Mesh_Load ("../data/dofscene4.obj", SCE_FALSE);
@@ -179,9 +179,9 @@ int main (void)
         SCE_Scene_Render (scene, NULL, tex1, 0);
         SCE_Texture_Use (depthmap);
         SCE_Shader_Use (shd1);
-        SCE_Shader_Param (SCE_PIXEL_SHADER, "sens", 0);
+        SCE_Shader_Param ("sens", 0);
         SCE_Texture_Blitf (NULL, blurred1, NULL, tex1);
-        SCE_Shader_Param (SCE_PIXEL_SHADER, "sens", 1);
+        SCE_Shader_Param ("sens", 1);
         SCE_Texture_Blitf (NULL, blurred2, NULL, blurred1);
         SCE_Texture_Blitf (NULL, NULL, NULL, blurred2);
         
