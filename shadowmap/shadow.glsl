@@ -3,32 +3,22 @@
 varying vec4 pos;
 varying vec3 nor;
 varying vec4 lpos;
-varying vec2 texcoord;
 
-uniform mat4 matrix0;
-uniform mat4 matrix1;
-
-float f (float x)
-{
-    return x - 0.0003;
-}
+uniform mat4 matrix0;           // light camera's matrix
+uniform mat4 matrix1;           // object's matrix
 
 void main (void)
 {
-    texcoord = gl_MultiTexCoord0.st;
     nor = gl_NormalMatrix * gl_Normal;
     lpos = gl_LightSource[0].position;
 
-    // application de la matrice de l'objet
     pos = matrix1 * gl_Vertex;
     
-    // application de la matrice de vue et projection
     gl_TexCoord[0] = matrix0 * pos;
-    gl_TexCoord[0].xyz /= gl_TexCoord[0].w;
-    // recadrage
-    gl_TexCoord[0].xyz += vec3 (1., 1., 1.);
-    gl_TexCoord[0].xyz /= 2.;
-    gl_TexCoord[0].z = f (gl_TexCoord[0].z);
+    gl_TexCoord[0].xy /= gl_TexCoord[0].w;
+    gl_TexCoord[0].xy += vec2 (1., 1.);
+    gl_TexCoord[0].xy /= 2.;
+
     pos = gl_ModelViewMatrix * gl_Vertex;
     gl_Position = ftransform ();
 }
@@ -37,23 +27,14 @@ void main (void)
 
 #version 120
 
-#define A 0
-#define B 1
-#define C 0
-
 #define RANGE 2000.0
 
 varying vec4 pos;
 varying vec3 nor;
 varying vec4 lpos;
-varying vec2 texcoord;
 
 uniform bool dosmooth;
-#if C
-uniform sampler2DShadow depthmap;
-#else
 uniform sampler2D depthmap;
-#endif
 
 #define W (4096./2.)
 #define H (4096./2.)
@@ -63,18 +44,8 @@ uniform sampler2D depthmap;
 
 bool outshadow (vec3 coord)
 {
-#if A
-    vec4 c = texture2D (depthmap, coord.xy);
-    float a = (c.x + c.y + c.z + c.w) / 4.0;
-    return (a > coord.z);
-#elif B    
     float a = texture2D (depthmap, coord.xy).x;
     return (a > coord.z);
-#elif C
-    return (shadow2D (depthmap, gl_TexCoord[0].xyz).x > 0.0 ? true : false);
-#else
-    return false;
-#endif
 }
 
 float getintensity (void)
