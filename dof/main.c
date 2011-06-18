@@ -63,10 +63,10 @@ int main (void)
                            0., 0., 2.);
     SCE_Scene_AddCamera (scene, cam);
     
-    shd1 = SCE_Shader_Load (NULL, "shd1.frag", SCE_FALSE);
+    shd1 = SCE_Shader_Load ("shd1.glsl", SCE_FALSE);
     SCE_Shader_Build (shd1);
     verif (SCEE_HaveError ())
-    srender = SCE_Shader_Load ("render.glsl", NULL, SCE_FALSE);
+    srender = SCE_Shader_Load ("render.glsl", SCE_FALSE);
     SCE_Shader_Build (srender);
     verif (SCEE_HaveError ())
 

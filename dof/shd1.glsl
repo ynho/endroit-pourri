@@ -1,3 +1,4 @@
+[Pixel shader]
 
 #version 120
 

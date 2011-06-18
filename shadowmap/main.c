@@ -71,7 +71,7 @@ int main (void)
     verif (SCEE_HaveError ())
 
     /* final render shader */
-    rendershadow = SCE_Shader_Load ("shadow.glsl", NULL, SCE_FALSE);
+    rendershadow = SCE_Shader_Load ("shadow.glsl", SCE_FALSE);
     SCE_Shader_Build (rendershadow);
     verif (SCEE_HaveError ())
     SCE_Shader_Use (rendershadow);
@@ -81,7 +81,7 @@ int main (void)
     verif (SCEE_HaveError ())
 
     /* depth map render shader */
-    genshadow = SCE_Shader_Load ("genshadow.glsl", NULL, SCE_FALSE);
+    genshadow = SCE_Shader_Load ("genshadow.glsl", SCE_FALSE);
     SCE_Shader_Build (genshadow);
     verif (SCEE_HaveError ())
 

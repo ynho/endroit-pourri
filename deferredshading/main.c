@@ -94,10 +94,10 @@ int main (void)
     SCE_Texture_SetFilter (normalmap, SCE_TEX_NEAREST);
 
     /* build the scene's unique model */
-    srender = SCE_Shader_Load ("render.glsl", NULL, SCE_FALSE);
+    srender = SCE_Shader_Load ("render.glsl", SCE_FALSE);
     SCE_Shader_Build (srender);
     verif (SCEE_HaveError ())
-    finalrender = SCE_Shader_Load ("finalrender.glsl", NULL, SCE_FALSE);
+    finalrender = SCE_Shader_Load ("finalrender.glsl", SCE_FALSE);
     SCE_Shader_Build (finalrender);
     verif (SCEE_HaveError ())
     /* set shader's parameter according to texture's unit */
