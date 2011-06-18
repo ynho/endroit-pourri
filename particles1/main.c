@@ -160,7 +160,7 @@ int main (void)
     SCE_Particle_SetMaxParticles (&psys->buf, EMIT_PARTICLE * (0.1 + MIN_LIFE + (MAX_LIFE - MIN_LIFE) / 2));
     {
         int prout[7] = {1, SCE_POSITION, SCE_VERTICES_TYPE, 3,
-                        SCE_ROLOR, SCE_UNSIGNED_BYTE, 3};
+                        SCE_COLOR, SCE_UNSIGNED_BYTE, 3};
         SCE_Particle_BuildArrays (&psys->buf, SCE_POINTS, prout, 2);
     }
     verif (SCEE_HaveError())
