@@ -76,13 +76,6 @@ int main (void)
     SCE_Model_AddNewInstance (model, 0, 1, NULL);
     SCE_Model_MergeInstances (model);
 
-    /* disable backface culling */
-    {
-      SCE_SSceneEntityProperties *p = NULL;
-      p = SCE_SceneEntity_GetProperties (SCE_Model_GetEntity (model, 0, 0));
-      p->cullface = SCE_FALSE;
-    }
-
     SCE_Scene_AddModel (scene, model);
 
     verif (SCEE_HaveError ())

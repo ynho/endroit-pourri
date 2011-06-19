@@ -11,10 +11,10 @@ void main (void)
 
 [Geometry shader]
 
-#define MODE 2
+#define MODE 1
 
 #if MODE == 1
-layout (triangle_strip, max_vertices = 12) out;
+layout (triangle_strip, max_vertices = 8) out;
 #elif MODE == 2
 layout (line_strip, max_vertices = 20) out;
 #else
@@ -61,35 +61,35 @@ void main (void)
   gl_Position = gl_PositionIn[0];
   EmitVertex();
 
-  nor = midn2;
-  gl_Position = mid2;
-  EmitVertex();
-
   nor = midn0;
   gl_Position = mid0;
   EmitVertex();
 
+  nor = midn2;
+  gl_Position = mid2;
+  EmitVertex();
+
   nor = midn1;
   gl_Position = mid1;
+  EmitVertex();
+
+  nor = normal[2];
+  gl_Position = gl_PositionIn[2];
+  EmitVertex();
+
+  EndPrimitive();
+
+  /* begin */
+  nor = midn0;
+  gl_Position = mid0;
   EmitVertex();
 
   nor = normal[1];
   gl_Position = gl_PositionIn[1];
   EmitVertex();
 
-  EndPrimitive();
-
-  /* begin */
   nor = midn1;
   gl_Position = mid1;
-  EmitVertex();
-
-  nor = midn2;
-  gl_Position = mid2;
-  EmitVertex();
-
-  nor = normal[2];
-  gl_Position = gl_PositionIn[2];
   EmitVertex();
 
   EndPrimitive();
