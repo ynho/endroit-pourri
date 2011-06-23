@@ -40,7 +40,10 @@ int main (void)
     srand (time (NULL));
     SDL_Init (SDL_INIT_VIDEO);
     SDL_WM_SetCaption ("Geometry shader test 1", NULL);
-    verif (SDL_SetVideoMode (W, H, 32, SDL_OPENGL) == NULL)
+    if (SDL_SetVideoMode (W, H, 32, SDL_OPENGL) == NULL) {
+        fprintf (stderr, "failed to setup window: %s\n", SDL_GetError ());
+        return EXIT_FAILURE;
+    }
     SDL_EnableKeyRepeat (1, 0);
     verif (SCE_Init_Interface (stderr, 0) < 0)
     
@@ -66,8 +69,8 @@ int main (void)
 
     shader = SCE_Shader_Load ("shader.glsl", SCE_FALSE);
     if (SCE_Shader_Build (shader) < 0) {
-      SCEE_Out ();
-      exit (-1);
+        SCEE_Out ();
+        exit (EXIT_FAILURE);
     }
     mesh = SCE_Mesh_Load ("../data/spaceship.obj", SCE_FALSE);
     SCE_Mesh_AutoBuild (mesh);

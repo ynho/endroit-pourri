@@ -46,8 +46,11 @@ int main (void)
     srand (time (NULL));
     SDL_Init (SDL_INIT_VIDEO);
     SDL_WM_SetCaption ("Depth of field sample - SCEngine v0.0.9 Alpha", NULL);
-    verif (SDL_SetVideoMode (W, H, 32, SDL_OPENGL) == NULL)
-        SDL_EnableKeyRepeat (1, 0);
+    if (SDL_SetVideoMode (W, H, 32, SDL_OPENGL) == NULL) {
+        fprintf (stderr, "failed to setup window: %s\n", SDL_GetError ());
+        return EXIT_FAILURE;
+    }
+    SDL_EnableKeyRepeat (1, 0);
 
     SCE_Init_Interface (stderr, 0);
     verif (SCEE_HaveError())

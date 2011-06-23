@@ -50,7 +50,10 @@ int main (void)
     /* parametres SDL */
     SDL_WM_SetCaption ("Deferred shading - SCEngine v0.1.0 Alpha", NULL);
     /* initialisation finale */
-    verif (SDL_SetVideoMode (W, H, 32, SDL_OPENGL) == NULL)
+    if (SDL_SetVideoMode (W, H, 32, SDL_OPENGL) == NULL) {
+        fprintf (stderr, "failed to setup window: %s\n", SDL_GetError ());
+        return EXIT_FAILURE;
+    }
     SDL_EnableKeyRepeat (1, 0);
     /* initialisation du SCEngine */
     SCE_Init_Interface (stderr, 0);
