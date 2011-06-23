@@ -21,17 +21,6 @@ if (cd) {\
     exit (EXIT_FAILURE);\
 }
 
-static void SCE_Scene_UseCamera (SCE_SCamera *cam)
-{
-    SCE_RViewport (cam->viewport.x, cam->viewport.y,
-                   cam->viewport.w, cam->viewport.h);
-    SCE_RSetActiveMatrix (SCE_MAT_PROJECTION);
-    SCE_RLoadMatrix (cam->proj);
-    SCE_RSetActiveMatrix (SCE_MAT_MODELVIEW);
-    SCE_RLoadMatrix (cam->finalview);
-}
-
-
 int main (void)
 {
     SCE_SInertVar rx, ry;
