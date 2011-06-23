@@ -349,6 +349,8 @@ int main (void)
         SCE_Light_ActivateLighting (SCE_TRUE);
         SCE_RActivateDepthBuffer (SCE_FALSE);
 
+        SCE_RLoadMatrix (SCE_MAT_CAMERA, sce_matrix4_id);
+        SCE_RLoadMatrix (SCE_MAT_PROJECTION, sce_matrix4_id);
         SCE_List_ForEach (it, &scene->lights) {
             SCE_Light_Use (SCE_List_GetData (it));
             SCE_Quad_Draw (-1.0, -1.0, 2.0, 2.0);
